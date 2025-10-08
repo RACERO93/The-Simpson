@@ -1,0 +1,105 @@
+body {
+    background: radial-gradient(circle, #ffec85 0%, #ffcc33 100%);
+    font-family: 'Comic Sans MS', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.volver {
+    background-color: #BBFAFC;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    box-shadow: 0px 4px 6px #25baf0;
+    font-weight: bold;
+    position: fixed;
+
+
+}
+
+.volver:hover {
+    transform: scale(1.1);
+}
+
+
+h1 {
+    font-size: 4rem;
+    color: #2b77d1;
+    margin: 0;
+    text-shadow: 2px 2px 0px #fff, 4px 4px 0px #000;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: #000;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 0px #fff;
+}
+
+#personajes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 30px;
+}
+
+/*  Tarjetas de personaje */
+.card {
+    background-color: #fff7d1;
+    border-radius: 20px;
+    width: 180px;
+    padding: 15px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.25s;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-10px) rotate(-2deg);
+    box-shadow: 6px 6px 8px #0009;
+}
+
+
+.imagen-personaje {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 15px;
+    background: #fff3a6;
+    padding: 5px;
+}
+
+
+.card h3 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Detalle del personaje (vista individual) */
+.detalle-personaje {
+    max-width: 400px;
+    margin: 40px auto;
+    background: #fff7d1;
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: 4px 4px 5px #0009;
+    text-align: center;
+}
+
+.imagen-detalle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: #fff3a6;
+    margin-bottom: 20px;
+
+}
