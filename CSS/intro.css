@@ -55,12 +55,14 @@ p {
     text-align: center;
     padding: 0px 100px;
     font-size: 16px;
-    margin-top: 36px;
+    margin-top: 26px;
     text-align: justify;
+
 
 }
 
 .paragraph {
+    
     background: #ffffff3c;
     padding: 10px;
     margin: auto;

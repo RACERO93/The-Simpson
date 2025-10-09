@@ -103,3 +103,10 @@ h2 {
     margin-bottom: 20px;
 
 }
+.volver-btn{
+border-radius: 8px;
+}
+
+.volver-btn:hover{
+    background-color: #25baf0;
+}
