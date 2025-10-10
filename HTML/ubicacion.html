@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    
-    <meta charset="UTF-8">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ubicaciones de Los Simpson</title>
-    
-    <link rel="stylesheet" href="../CSS/ubicacion.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ubicaciones de Los Simpson</title>
+  <link rel="stylesheet" href="../CSS/ubicacion.css" />
+  <link rel="icon" href="../Imagenes/personajes/the_simpsons.png">
 </head>
-
 <body>
+<button class="volver" onclick="window.location.href='index.html'">Volver</button>
+  <h1> Ubicaciones</h1>
+  <div id="ubicaciones" class="contenedor-ubicaciones"></div>
 
-    <h1> Ubicaciones de Los Simpson</h1>
-    <div id="contenedorUbicaciones" class="contenedor"></div>
+  <!-- Modal de detalle -->
+  <div id="detalle-ubicacion" class="overlay-detalle"></div>
 
-    <!-- Contenedor del detalle -->
-    <div id="detalleUbicacion" class="oculto"></div>
-
-    
-    <script src="../JS/ubicacion.js"></script>
+  <script src="../JS/ubicacion.js"></script>
 </body>
-
 </html>

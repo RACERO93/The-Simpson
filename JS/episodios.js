@@ -4,18 +4,16 @@ const detalleContenedor = document.getElementById("detalle-episodio");
 
 // Mapa de imágenes por nombre de episodio
 const imagenesPorEpisodio = {
-  "Simpsons Roasting on an Open Fire": "../Episodios/Incendio.jpg",
-  "Bart the Genius": "../Episodios/Bart.jpg",
-  "Homer's Odyssey": "../Episodios/Odyssey.jpg",
-  "There's No Disgrace Like Home": "../Episodios/family.jpg",
-  "Bart the General": "../Episodios/BartGeneral.jpg",
-  "Moaning Lisa": "../Episodios/Quejandose.jpg",
-  "The Call of the Simpsons": "../Episodios/CallSimpsons.jpg",
-  "The Telltale Head": "../Episodios/TelltaleHead.jpg",
-  "Life on the Fast Lane": "../Episodios/FastLane.jpg",
-  "Homer's Night Out": "../Episodios/HomerNight.jpg",
-  "The Crepes of Wrath": "../Episodios/CrepesWrath.jpg",
-  "Krusty Gets Busted": "../Episodios/GetsdBusted.jpg",
+  "Simpsons Roasting on an Open Fire": "../Imagenes/Episodios/Incendio.jpg",
+  "Bart the Genius": "../Imagenes/Episodios/Bart.jpg",
+  "Homer's Odyssey": "../Imagenes/Episodios/Odyssey.jpg",
+  "There's No Disgrace Like Home": "../Imagenes/Episodios/family.jpg",
+  "Bart the General": "../Imagenes/Episodios/BartGeneral.jpg",
+  "Moaning Lisa": "../Imagenes/Episodios/Quejandose.jpg",
+  "The Call of the Simpsons": "../Imagenes/Episodios/CallSimpsons.jpg",
+  "The Telltale Head": "../Imagenes/Episodios/TelltaleHead.jpg",
+  "Life on the Fast Lane": "../Imagenes/Episodios/FastLane.jpg",
+  "Homer's Night Out": "../Imagenes/Episodios//HomerNight.jpg",
 
 };
 
@@ -57,17 +55,17 @@ async function cargarEpisodios() {
 // Mostrar detalle dentro de un bloque tipo modal
 function mostrarDetalle(ep) {
   detalleContenedor.innerHTML = `
-    <div class="tarjeta-detalle">
-      <img src="${imagenesPorEpisodio[ep.name] || ep.imagePath || '../Episodio/default.jpg'}" alt="${ep.name}">
-      <h2>${ep.name}</h2>
-      <p><strong>ID:</strong> ${ep.id}</p>
-      <p><strong>Fecha:</strong> ${ep.airdate}</p>
-      <p><strong>Temporada:</strong> ${ep.season}</p>
-      <p><strong>Episodio #:</strong> ${ep.episode_number}</p>
-      <p><strong>Sinopsis:</strong> ${ep.synopsis || "Sin descripción disponible."}</p>
-      <button id="cerrarDetalle">Cerrar</button>
-    </div>
-  `;
+    <div class="tarjeta-detalle">
+    <h2>${ep.name}</h2> <br>
+      <img src="${imagenesPorEpisodio[ep.name] || ep.imagePath }" alt="${ep.name}">     
+      <p><strong>ID:</strong> ${ep.id}</p>
+      <p><strong>Fecha:</strong> ${ep.airdate}</p>
+      <p><strong>Temporada:</strong> ${ep.season}</p>
+      <p><strong>Episodio #:</strong> ${ep.episode_number}</p>
+      <p><strong>Sinopsis:</strong> ${ep.synopsis || "Sin descripción disponible."}</p>
+      <button id="cerrarDetalle">Cerrar</button>
+    </div>
+  `;
 
   detalleContenedor.style.display = "flex";
 
