@@ -1,94 +1,135 @@
 body {
-    background: #ffeb3b;
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    text-align: center;
+  font-family: Arial, sans-serif;
+  background: #fff8e7;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
 }
+
+.volver {
+    background-color: #BBFAFC;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    box-shadow: 0px 4px 6px #25baf0;
+    font-weight: bold;
+    position: fixed;
+
+
+}
+
+.volver:hover {
+    transform: scale(1.1);
+}
+
 
 h1 {
-    color: #222;
-    margin: 20px 0;
+
+    font-size: 4rem;
+    color: #2b77d1;
+    margin: 0;
+    text-shadow: 2px 2px 0px #fff, 4px 4px 0px #000;
 }
 
-.contenedor {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    padding: 20px;
+/* Contenedor de tarjetas */
+.contenedor-ubicaciones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  margin-top: 80px;
 }
 
-.tarjeta {
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    width: 200px;
-    padding: 10px;
-    transition: transform 0.3s;
-    cursor: pointer;
+/* Tarjeta de ubicación */
+.card-ubicacion {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
 }
 
-.tarjeta:hover {
-    transform: scale(1.05);
+.card-ubicacion:hover {
+  transform: scale(1.05);
 }
 
-.tarjeta img {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 10px;
+.card-ubicacion img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
 }
 
-/* Tarjeta Detalle */
-#detalleUbicacion {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
+.card-ubicacion h3 {
+  margin: 10px;
+  color: #333;
+  font-size: 18px;
 }
 
-.oculto {
-    display: none;
+/* Modal (detalle) */
+.overlay-detalle {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
 }
 
 .tarjeta-detalle {
-    background: #fff;
-    border-radius: 20px;
-    padding: 20px;
-    width: 90%;
-    max-width: 600px;
-    text-align: center;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: aparecer 0.4s ease;
 }
 
 .tarjeta-detalle img {
-    width: 70%;
-    border-radius: 15px;
-    margin-bottom: 15px;
-    object-fit: cover;
+  width: 80%;
+  border-radius: 15px;
+  margin-bottom: 15px;
 }
 
-.boton-volver {
-    margin-top: 15px;
-    background: #ffca28;
-    color: #000;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
+.tarjeta-detalle h2 {
+  color: #ffb400;
+  margin-bottom: 10px;
 }
 
-.boton-volver:hover {
-    background: #fbc02d;
+.tarjeta-detalle p {
+  margin: 5px 0;
+  color: #333;
+}
+
+.boton-cerrar {
+  margin-top: 10px;
+  background: #ffb400;
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.boton-cerrar:hover {
+  background: #ffc733;
+}
+
+/* Animación */
+@keyframes aparecer {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }

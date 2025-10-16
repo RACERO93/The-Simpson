@@ -1,52 +1,75 @@
 const API_URL = "https://thesimpsonsapi.com/api/locations";
-const contenedor = document.getElementById("contenedorUbicaciones");
-const detalle = document.getElementById("detalleUbicacion");
+const contenedor = document.getElementById("ubicaciones");
+const detalle = document.getElementById("detalle-ubicacion");
+
+// Mapa de imágenes (tú insertas tus rutas locales)
+const imagenesPorUbicacion = {
+  "742 Evergreen Terrace": "../Imagenes/Ubicacion/Evergreen.jpg",
+  "Springfield Nuclear Power Plant": "../Imagenes/Ubicacion/Nuclear.jpg",
+  "Springfield Elementary School": "../Imagenes/Ubicacion/School.jpg",
+  "Kwik-E-Mart": "../Imagenes/Ubicacion/Kwik-E-Mart.jpg",
+  "Moe's Tavern": "../Imagenes/Ubicacion/tavern.jpg",
+  "Springfield General Hospital": "../Imagenes/Ubicacion/Hospital.jpg",
+  "Springfield Town Square": "../Imagenes/Ubicacion/Square.jpg",
+  "Springfield Police Station": "../Imagenes/Ubicacion/police.jpg",
+  "Springfield Cemetery": "../Imagenes/Ubicacion/Cementery.jpg",
+  "Springfield Retirement Castle": "../Imagenes/Ubicacion/Castle.jpg",
+  "Krustylu Studios" : "../Imagenes/Ubicacion/",
+};
 
 // Cargar ubicaciones
 async function cargarUbicaciones() {
-    try {
-        const respuesta = await fetch(API_URL);
-        const data = await respuesta.json();
-        const ubicaciones = data.slice(0, 10); // primeras 10
+  try {
+    const respuesta = await fetch(API_URL);
+    const data = await respuesta.json();
+    const ubicaciones = Array.isArray(data) ? data.slice(0, 10) : data.results.slice(0, 10);
 
-        contenedor.innerHTML = "";
+    contenedor.innerHTML = "";
 
-        ubicaciones.forEach((ubi) => {
-            const div = document.createElement("div");
-            div.classList.add("tarjeta");
+    ubicaciones.forEach((ubi) => {
+      const card = document.createElement("div");
+      card.classList.add("card-ubicacion");
 
-            // si tú insertas tus propias imágenes:
-            const imgSrc = ubi.image_path || "imagenes/" + ubi.id + ".jpg";
+      const img = document.createElement("img");
+      img.src = imagenesPorUbicacion[ubi.name] || "../Ubicaciones/default.jpg";
+      img.alt = ubi.name;
 
-            div.innerHTML = `
-        <img src="${imgSrc}" alt="${ubi.name}">
-        <h3>${ubi.name}</h3>
-      `;
+      const titulo = document.createElement("h3");
+      titulo.textContent = ubi.name;
 
-            div.addEventListener("click", () => mostrarDetalle(ubi, imgSrc));
-            contenedor.appendChild(div);
-        });
-    } catch (error) {
-        console.error("Error al cargar ubicaciones:", error);
-    }
+      card.appendChild(img);
+      card.appendChild(titulo);
+      card.addEventListener("click", () => mostrarDetalle(ubi));
+
+      contenedor.appendChild(card);
+    });
+
+    console.log(" Ubicaciones cargadas:", ubicaciones);
+  } catch (error) {
+    console.error(" Error al cargar las ubicaciones:", error);
+  }
 }
 
-function mostrarDetalle(ubicacion, imgSrc) {
-    detalle.classList.remove("oculto");
+// Mostrar detalle
+function mostrarDetalle(ubi) {
+  const imgSrc = imagenesPorUbicacion[ubi.name] || "../imagenes/Ubicacion/default.jpg";
 
-    detalle.innerHTML = `
-    <div class="tarjeta-detalle">
-      <h2>${ubicacion.name}</h2>
-      <img src="${imgSrc}" alt="${ubicacion.name}">
-      <p><strong>ID:</strong> ${ubicacion.id}</p>
-      <p><strong>Ciudad:</strong> ${ubicacion.town || "Desconocida"}</p>
-      <button class="boton-volver" onclick="cerrarDetalle()">Volver a la lista</button>
-    </div>
-  `;
+  detalle.innerHTML = `
+    <div class="tarjeta-detalle">
+      <h2>${ubi.name}</h2>
+      <img src="${imgSrc}" alt="${ubi.name}">
+      <p><strong>ID:</strong> ${ubi.id}</p>
+      <p><strong>Ciudad:</strong> ${ubi.town || "Desconocida"}</p>
+      <p><strong>Lugar:</strong> ${ubi.use || "Desconocida"}</p>
+      <button class="boton-cerrar" onclick="cerrarDetalle()">Cerrar</button>
+    </div>
+  `;
+  detalle.style.display = "flex";
 }
 
+// Cerrar detalle
 function cerrarDetalle() {
-    detalle.classList.add("oculto");
+  detalle.style.display = "none";
 }
 
 cargarUbicaciones();
