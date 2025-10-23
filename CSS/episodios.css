@@ -145,7 +145,7 @@ button {
     padding: 10px 20px;
     font-size: 1rem;
     border-radius: 10px;
-    cursor: pointer;
+    cursor:pointer;
     box-shadow: 6px 6px 15px #000;
     margin-bottom: 20px;
     font-weight: bold ;
@@ -157,8 +157,8 @@ button:hover:not(:disabled) {
 }
 
 button:disabled {
-    background-color: #ccc;
-    color: #666;
+    background-color: #303030;
+    color: #e2dfdf;
     cursor: not-allowed;
     opacity: 0.7;
 

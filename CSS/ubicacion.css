@@ -130,7 +130,7 @@ h1 {
 
 
 button {
-    background-color: #f4e6c4;
+    background-color: #fedb83;
     border: none;
     color: #333;
     padding: 10px 20px;
@@ -149,6 +149,9 @@ button:hover:not(:disabled) {
 }
 
 button:disabled {
-    background-color: #f1e6a4;
+    background-color: #8e8e8d;
+    color: rgb(228, 226, 226);
+    cursor: not-allowed;
+    
 
 }
