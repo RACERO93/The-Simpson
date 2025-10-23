@@ -1,1 +1,0 @@
-función que descarta coincidencias entre usuarios con id y sin id 

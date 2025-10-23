@@ -1,10 +1,10 @@
 body {
     margin: 0;
-    height: 100vh;
+    height: 100vh; /*la altura del elemento sera el 100% que el de la ventana*/
     background-image: url("https://media.elcomercio.com/wp-content/uploads/2022/04/los-simpson-700x391.png");
     background-position: center;
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; /*la imagen de fondo no se repetirá y se mostrará una sola vez en el elemento al que se aplica*/
     font-family: 'Comic Sans MS', serif;
 }
 
@@ -69,4 +69,10 @@ body {
 
 .botonUbicaciones:hover{
     transform: scale(1.1);
+}
+
+
+footer{
+    font-size: 10px;
+    
 }

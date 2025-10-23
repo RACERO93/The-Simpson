@@ -7,13 +7,14 @@ const btnAnterior = document.getElementById("anterior");
 const btnSiguiente = document.getElementById("siguiente");
 const paginaActual = document.getElementById("paginaActual");
 
-// Páginas que se quieren mostrar (personalizadas)
+// Páginas que se mostrar (personalizadas) en pantalla 
 const paginasPermitidas = [1, 2, 5];
-let indicePagina = 0; // empieza en la primera (1)
+let indicePagina = 0; // empieza en la primera página
 
 // Detectar si hay un ID en la URL
-const params = new URLSearchParams(window.location.search);
-const personajeId = params.get("id");
+const params = new URLSearchParams(window.location.search);  // Mira los datos que tiene la url y los organiza para poder leerlo 
+const personajeId = params.get("id");  // saca el valor del dato que quieres ( por ejemploo un id nombre etc.. de un personaje ) con el get 
+console.log(personajeId)
 
 // Si hay un ID, mostrar un personaje; si no, cargar la lista
 if (personajeId) {
@@ -22,9 +23,12 @@ if (personajeId) {
     cargarPersonajes(paginasPermitidas[indicePagina]);
 }
 
-// Asignación de imágenes por nombre
+
+// Asignación de imágenes por nombre desde la api
 const imagenesPorNombre = { 
-    "Homer Simpson": "https://cdn.thesimpsonsapi.com/500/character/1.webp",
+    // página 1
+
+    "Homer Simpson": "https://cdn.thesimpsonsapi.com/200/character/1.webp",
     "Marge Simpson": "https://cdn.thesimpsonsapi.com/200/character/2.webp",
     "Bart Simpson": "https://cdn.thesimpsonsapi.com/200/character/3.webp",
     "Lisa Simpson": "https://cdn.thesimpsonsapi.com/200/character/4.webp",
@@ -44,7 +48,9 @@ const imagenesPorNombre = {
     "Seymour Skinner": "https://cdn.thesimpsonsapi.com/200/character/18.webp",
     "Gary Chalmers": "https://cdn.thesimpsonsapi.com/200/character/19.webp",
     "Edna Krabappel": "https://cdn.thesimpsonsapi.com/200/character/20.webp",
-    //        Segunda paginación
+
+    //        página 2
+
     "Otto Mann" : "https://cdn.thesimpsonsapi.com/200/character/21.webp",
     "Milhouse Van Houten": "https://cdn.thesimpsonsapi.com/200/character/22.webp",
     "Luann Van Houten"  : "https://cdn.thesimpsonsapi.com/200/character/23.webp",
@@ -66,7 +72,8 @@ const imagenesPorNombre = {
     "Kearney Zzyzwicz" : "https://cdn.thesimpsonsapi.com/200/character/39.webp",
     "Dolph Starbeam" : "https://cdn.thesimpsonsapi.com/200/character/40.webp",
 
-    //      Quinta Paginación 
+    //      página 5
+    
     "Rainier Wolfcastle" : "https://cdn.thesimpsonsapi.com/200/character/81.webp",
     "Frank Grimes": "https://cdn.thesimpsonsapi.com/200/character/82.webp",
     "Blue-Haired Lawyer"  : "https://cdn.thesimpsonsapi.com/200/character/83.webp",
@@ -88,31 +95,38 @@ const imagenesPorNombre = {
     "Harlan Dondelinger" : "https://cdn.thesimpsonsapi.com/200/character/99.webp",
     "Alice Glick" : "https://cdn.thesimpsonsapi.com/200/character/100.webp",
 
+}
 
-};
 
-// Función para cargar y mostrar todos los personajes de una página
+// Función para cargar los personajes en la lista 
 async function cargarPersonajes(pagina = 1) {
-    try {
+    try {    // 
         const respuesta = await fetch(`${API_URL}?page=${pagina}`);
         if (!respuesta.ok) throw new Error("Error al obtener los datos de la API");
 
         const data = await respuesta.json();
         console.log(` Página ${pagina}:`, data);
 
-        let personajes = [];
+
+        // esta condicion permiten que el codigo  funcione aunque la api devuelva los datos en distitas estructuras 
+
+        let personajes = [];  //se crea un arreglo vacio para guardar los personajes 
+
+        // verifica donde este el array de personaje en la repuesta 
         if (Array.isArray(data)) {
-            personajes = data;
-        } else if (Array.isArray(data.characters)) {
-            personajes = data.characters;
-        } else if (Array.isArray(data.results)) {
+            personajes = data;  // si ya es un array lo asigna diresctamente a la variable personaje 
+        } else if (Array.isArray(data.characters)) { 
+            personajes = data.characters; // busca si existe un array 
+        } else if (Array.isArray(data.results)) { 
             personajes = data.results;
-        } else {
+        } else { //si ninguna condicion anterior cumple, lanza un error 
             throw new Error("No se encontró la lista de personajes en la respuesta.");
         }
 
         contenedor.innerHTML = "";
         paginaActual.textContent = `Página ${pagina}`;
+
+        
 
         personajes.forEach(personaje => {
             const card = document.createElement("div");
@@ -154,24 +168,52 @@ async function mostrarPersonaje(id) {
         const imagenAsignada = imagenesPorNombre[personaje.name] || personaje.image;
 
         contenedor.innerHTML = `
-            <div class="detalle-personaje">
+            <div class="detalle-personaje"  class="ocultar">
                 <img src="${imagenAsignada}" alt="${personaje.name}" class="imagen-detalle">
                 <h2>${personaje.name || "Desconocido"}</h2>
+                <p><strong>ID:</strong> ${personaje.id || "No disponible"}</p>
                 <p><strong>Edad:</strong> ${personaje.age || "No disponible"}</p>
                 <p><strong>Fecha de nacimiento:</strong> ${personaje.birthdate || "No disponible"}</p>
-                <p><strong>Ocupación:</strong> ${personaje.occupation || "No disponible"}</p>
-                <p><strong>Género:</strong> ${personaje.gender || "Sin descripción"}</p>
+                <p><strong>Género:</strong> ${personaje.gender || "Sin descripciónn }"}</p>
+                <button class="acordeon-btn"> Descripción <i class="fa-solid fa-chevron-down"></i>  </button>       <!--  Sección desplegable de descripción -->
+            <div class="acordeon-contenido">
                 <p><strong>Descripción:</strong> ${personaje.description || "Sin descripción"}</p>
+            </div>
+                <p><strong>Ocupación:</strong> ${personaje.occupation || "No disponible"}</p>
+                <button class="acordeon-btn"> Frases <i class="fa-solid fa-chevron-down"></i>  </button></button>                    <!--  Sección desplegable de frases -->
+            <div class="acordeon-contenido">
+                <p><strong>Frases:</strong> ${personaje.phrases || "Sin descripción"}</p>
+        
+            </div>
+            <br> <br>
                 <button onclick="window.location.href='personajes.html'" class="volver-btn">Volver a la lista</button>
             </div>
+    
+
+    
         `;
+
+
+
+
+    function activarBotones () {
+    document.querySelectorAll(".acordeon-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const contenido = btn.nextElementSibling;
+        contenido.classList.toggle("mostrar");
+    });
+    });
+}
+    activarBotones ()
     } catch (error) {
         console.error("Error al cargar el personaje:", error);
         contenedor.innerHTML = `<p>No se pudo cargar el personaje</p><pre>${error.message}</pre>`;
     }
+
+
 }
 
-// Funcionalidad de los botones
+// funcion del boton de las páginas 
 btnSiguiente.addEventListener("click", () => {
     if (indicePagina < paginasPermitidas.length - 1) {
         indicePagina++;
@@ -185,3 +227,6 @@ btnAnterior.addEventListener("click", () => {
         cargarPersonajes(paginasPermitidas[indicePagina]);
     }
 });
+
+
+    
