@@ -12,30 +12,30 @@ const paginasPermitidas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let indicePagina = 0;
 
 // Detectar si hay un ID en la URL
-const params = new URLSearchParams(window.location.search);
-const personajeId = params.get("id");
+const params = new URLSearchParams(window.location.search); //Mira los datos que tiene la url y los organiza para poderlo leer 
+const personajeId = params.get("id");  //saca el valor del dato que quieres ( por ejemplo un id nombe etc... de un personaje) con GET
 
 // Si hay un ID, mostrar personaje; si no, cargar lista
 if (personajeId) {
     mostrarPersonaje(personajeId);
 } else {
-    cargarPersonajes(paginasPermitidas[indicePagina]);
+    cargarPersonajes(paginasPermitidas[indicePagina]);//Llama la funcion y pasale como argumento a la pagina actual(segun el indice que tenemos en indicePagina)
 }
 
-// Cargar lista de personajes desde la API y mostrar imágenes del CDN
+// Cargar lista de personajes desde la API y mostrar imagenes
 async function cargarPersonajes(pagina = 1) {
     try {
-        const respuesta = await fetch(`${API_URL}?page=${pagina}`);
-        if (!respuesta.ok) throw new Error("Error al obtener los datos de la API");
+        const respuesta = await fetch(`${API_URL}?page=${pagina}`); // Aqui es donde pinta el llamado de la api y tambien por página
+        if (!respuesta.ok) throw new Error("Error al obtener los datos de la API"); //Para lanzar un error dentro de una promesa
 
-        const data = await respuesta.json();
+        const data = await respuesta.json(); // Espera a que la api se convierta en JSON y lo guarda en la variable data 
         console.log(` Página ${pagina}:`, data);
 
-        let personajes = [];
-        if (Array.isArray(data)) personajes = data;
-        else if (Array.isArray(data.characters)) personajes = data.characters;
+        let personajes = [];  // Se crea un array vacio para guardas los personajes 
+        if (Array.isArray(data)) personajes = data;// si ya es un array lo asigna diresctamente a la variable personaje
+        else if (Array.isArray(data.characters)) personajes = data.characters;// busca si existe un array
         else if (Array.isArray(data.results)) personajes = data.results;
-        else throw new Error("No se encontró la lista de personajes en la respuesta.");
+        else throw new Error("No se encontró la lista de personajes en la respuesta."); //si ninguna condicion anterior cumple, lanza un error
 
         contenedor.innerHTML = "";
         paginaActual.textContent = `Página ${pagina}`;
@@ -51,8 +51,8 @@ async function cargarPersonajes(pagina = 1) {
             img.classList.add("imagen-personaje");
 
             // Si hay error al cargar la imagen  usar una de respaldo
-            img.onerror = () => {
-                console.warn(` Imagen no encontrada para ID ${personaje.id}`);
+            img.onerror = () => { // Es un evento cuando la imagen no se pueda cargar correctamenete (URL este mal o archivo no existe)
+                console.warn(` Imagen no encontrada para ID ${personaje.id}`); // Mensaje de advertencia 
                 img.src = "https://cdn.thesimpsonsapi.com/200/character/default.webp";
             };
 

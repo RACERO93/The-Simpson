@@ -11,21 +11,21 @@ let indicePagina = 0;
 let paginaActual = paginasPermitidas[indicePagina];
 
 // Cargar ubicaciones desde la API
-async function cargarUbicaciones(pagina) {
+async function cargarUbicaciones(pagina) {  // Se declara una funcion asincrona llamando cargarUbicaciones que recibe un paramero de pagina
   try {
-    const respuesta = await fetch(`${API_URL}?page=${pagina}`);
-    const data = await respuesta.json();
-    console.log(`Página ${pagina}:`, data);
+    const respuesta = await fetch(`${API_URL}?page=${pagina}`);  //para hacer peticiones con el fetch en el navegador
+    const data = await respuesta.json(); //  convierte la respuesta que viene en forma json  a objecto y espera la convecion que temine en data a  datos reales
+    console.log(`Página ${pagina}:`, data);  // Muestra en la consola del navegador los datos recibidps
 
-    const ubicaciones = Array.isArray(data)
-      ? data
-      : data.results || [];
+    const ubicaciones = Array.isArray(data)// comprueba si data es array
+      ? data   //si es array ubicacion es igual a data
+      : data.results || []; //y si no es Array usa data.results
 
     contenedor.innerHTML = "";
 
-    ubicaciones.forEach((ubi) => {
+    ubicaciones.forEach((ubi) => { // inicia un bucle que recorre cada elemento del array ubicaciones y cada elemento se llama ubi
       const card = document.createElement("div");
-      card.classList.add("card-ubicacion");
+      card.classList.add("card-ubicacion"); // agrega la clase de css al elemento card para aplicar los estilos
 
       // Imagen desde CDN
       const img = document.createElement("img");
@@ -43,9 +43,9 @@ async function cargarUbicaciones(pagina) {
       // Al hacer clic, mostrar detalle
       card.addEventListener("click", () => mostrarDetalle(ubi));
 
-      card.appendChild(img);
-      card.appendChild(titulo);
-      contenedor.appendChild(card);
+      card.appendChild(img); // inserta imagen del contenedor card
+      card.appendChild(titulo); //inserta titulo del contenedor card
+      contenedor.appendChild(card);   // Cuando se hace clic en la tarjeta card, se muestra el detalle de (ubi)
     });
 
     // Mostrar número de página actual
@@ -105,11 +105,11 @@ function actualizarBotones() {
 }
 
 // Paginación
-btnAnterior.addEventListener("click", () => {
+btnAnterior.addEventListener("click", () => {   // Escucha el boton anteriro cuando el usuario le da clic
   if (indicePagina > 0) {
     indicePagina--;
     paginaActual = paginasPermitidas[indicePagina];
-    cargarUbicaciones(paginaActual);
+    cargarUbicaciones(paginaActual);  //llama la funcion que actualiza la pantanlla mostrando una nueva pagina
   }
 });
 

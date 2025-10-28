@@ -8,11 +8,12 @@ const btnAnterior = document.getElementById("btnAnterior");
 const btnSiguiente = document.getElementById("btnSiguiente");
 const paginaActualSpan = document.getElementById("paginaActual");
 
-// Configuración de páginas
-const paginasPermitidas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25];
-let indicePagina = 0;
-let paginaActual = paginasPermitidas[indicePagina];
-const episodiosPorPagina = 20;
+// Configuración de páginas   
+const paginasPermitidas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25]; //este array solo permite el llamada de las págias asignadas
+let indicePagina = 0;   // Guarda la possicion actaul dentro del arreglo que corresponde a la página #1
+let paginaActual = paginasPermitidas[indicePagina]; //se toma el valor que esta en la paginaActual oseaa pagina #1
+const episodiosPorPagina = 20;   //el llamado de cada episodio
+
 
 // Videos personalizados
 const videoPerzonalizado = {
@@ -31,15 +32,16 @@ async function cargarEpisodios(pagina = 1) {
     const data = await respuesta.json();
     console.log(`Página ${pagina}:`, data);
 
-    const episodios = Array.isArray(data)
-      ? data.slice(0, episodiosPorPagina)
-      : data.results.slice(0, episodiosPorPagina);
+    const episodios = Array.isArray(data) //si data es un arreglo, guarda data en en la variable de episodios. si no, guarda un array vacio.,
+      ? data.slice(0, episodiosPorPagina) // toma los primros episodios que estan definifo en la variable y muetras la cantidad de episodio por pagina
+      : data.results.slice(0, episodiosPorPagina);    //toma los primeroe elementos del array data.results y lo pone en un nuevo arreglo ( slice= inicio,fin)
+
 
     contenedor.innerHTML = "";
 
     episodios.forEach((ep) => {
       const card = document.createElement("div");
-      card.classList.add("card-episodio");
+      card.classList.add("card-episodio"); //elemento card agrega una clase de CSS par que tome los estilos definido
 
       // Imagen desde CDN según ID
       const img = document.createElement("img");
@@ -67,9 +69,10 @@ async function cargarEpisodios(pagina = 1) {
           card.appendChild(video);
 
           video.addEventListener("ended", () => {
-            card.innerHTML = "";
-            card.appendChild(img);
-            card.appendChild(titulo);
+            card.innerHTML = ""; // Limpia el contenido del video
+            card.appendChild(img);//vuelve a poner la imagen original
+            card.appendChild(titulo);  // Vuelve a ponel el titulo
+
           });
         });
       } else {
