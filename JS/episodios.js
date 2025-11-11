@@ -102,7 +102,7 @@ function mostrarDetalle(ep) {
     <div class="tarjeta-detalle">
       <h2>${ep.name}</h2>
       <img src="${image_path}" alt="${ep.name}"
-          onerror="this.src='https://cdn.thesimpsonsapi.com/200/episode/default.webp'">
+          onerror="this.src='https://cdn.thesimpsonsapi.com/200/episode/default.webp'">   //para detectar y responde a un error
       <p><strong>ID:</strong> ${ep.id || "No disponible"}</p>
       <p><strong>Fecha:</strong> ${ep.airdate || "No disponible"}</p>
       <p><strong>Episodio #:</strong> ${ep.episode_number || "?"}</p>

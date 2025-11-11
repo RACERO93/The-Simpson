@@ -27,7 +27,7 @@ async function cargarUbicaciones(pagina) {  // Se declara una funcion asincrona 
       const card = document.createElement("div");
       card.classList.add("card-ubicacion"); // agrega la clase de css al elemento card para aplicar los estilos
 
-      // Imagen desde CDN
+      // carga la lista de imagenes de las ubicaciones 
       const img = document.createElement("img");
       img.src = `https://cdn.thesimpsonsapi.com/1280/location/${ubi.id}.webp`;
       img.alt = ubi.name || "Ubicación sin nombre";
@@ -60,7 +60,7 @@ async function cargarUbicaciones(pagina) {  // Se declara una funcion asincrona 
   }
 }
 
-// Mostrar detalle de una ubicación
+// Mostrar detalle de una ubicación en el modal 
 function mostrarDetalle(ubi) {
   const image_path = `https://cdn.thesimpsonsapi.com/1280/location/${ubi.id}.webp`;
 

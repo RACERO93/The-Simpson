@@ -8,7 +8,7 @@ const btnSiguiente = document.getElementById("siguiente");
 const paginaActual = document.getElementById("paginaActual");
 
 // Páginas permitidas
-const paginasPermitidas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const paginasPermitidas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11];
 let indicePagina = 0;
 
 // Detectar si hay un ID en la URL
@@ -44,7 +44,7 @@ async function cargarPersonajes(pagina = 1) {
             const card = document.createElement("div");
             card.classList.add("card");
 
-            // Siempre cargamos la imagen desde el CDN usando el ID
+            // Se carga la imagen usando el ID en la lista de los personajes
             const img = document.createElement("img");
             img.src = `https://cdn.thesimpsonsapi.com/200/character/${personaje.id}.webp`;
             img.alt = personaje.name || "Personaje sin nombre";
@@ -76,7 +76,7 @@ async function cargarPersonajes(pagina = 1) {
 }
 
 
-// Mostrar detalle del personaje con imagen desde el CDN
+// Mostrar detalle del personaje con imagen en la trajeta 
 async function mostrarPersonaje(id) {
     try {
         const respuesta = await fetch(`${API_URL}/${id}`);
