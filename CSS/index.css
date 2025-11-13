@@ -1,23 +1,28 @@
 body {
+
+
     margin: 0;
-    height: 100vh; /*la altura del elemento sera el 100% que el de la ventana*/
+    height: 100vh;
+    /*la altura del elemento sera el 100% que el de la ventana*/
     background-image: url("https://media.elcomercio.com/wp-content/uploads/2022/04/los-simpson-700x391.png");
     background-position: center;
     background-size: cover;
-    background-repeat: no-repeat; /*la imagen de fondo no se repetirá y se mostrará una sola vez en el elemento al que se aplica*/
+    background-repeat: no-repeat;
+    /*la imagen de fondo no se repetirá y se mostrará una sola vez en el elemento al que se aplica*/
     font-family: 'Comic Sans MS', serif;
 }
 
-.contenedor{
+.contenedor {
+    width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
 }
 
 
 
-.botonPersonaje{
+.botonPersonaje {
     background-color: #7edaec;
     padding: 15px 30px;
     font-size: 20px;
@@ -28,14 +33,14 @@ body {
     transition: transform 0.2s;
     margin-left: -40%;
     margin-top: 5%;
-    
-}   
 
-.botonPersonaje:hover{
+}
+
+.botonPersonaje:hover {
     transform: scale(1.1);
 }
 
-    .botonEpisodios{
+.botonEpisodios {
     background-color: #7edaec;
     padding: 15px 30px;
     font-size: 20px;
@@ -46,14 +51,14 @@ body {
     transition: transform 0.2s;
     margin-left: -10%;
     margin-bottom: -17%;
-    
-}   
 
-.botonEpisodios:hover{
+}
+
+.botonEpisodios:hover {
     transform: scale(1.1);
 }
 
-.botonUbicaciones{
+.botonUbicaciones {
     background-color: #7edaec;
     padding: 15px 30px;
     font-size: 20px;
@@ -64,15 +69,15 @@ body {
     transition: transform 0.2s;
     margin-left: -10%;
     margin-bottom: -29%;
-    
-}   
 
-.botonUbicaciones:hover{
+}
+
+.botonUbicaciones:hover {
     transform: scale(1.1);
 }
 
 
-footer{
+footer {
     font-size: 10px;
-    
+
 }

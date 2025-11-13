@@ -9,7 +9,7 @@ const btnSiguiente = document.getElementById("btnSiguiente");
 const paginaActualSpan = document.getElementById("paginaActual");
 
 // Configuración de páginas   
-const paginasPermitidas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25]; //este array solo permite el llamada de las págias asignadas
+const paginasPermitidas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15,16,25]; //este array solo permite el llamada de las págias asignadas
 let indicePagina = 0;   // Guarda la possicion actaul dentro del arreglo que corresponde a la página #1
 let paginaActual = paginasPermitidas[indicePagina]; //se toma el valor que esta en la paginaActual oseaa pagina #1
 const episodiosPorPagina = 20;   //el llamado de cada episodio

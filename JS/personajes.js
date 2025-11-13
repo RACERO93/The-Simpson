@@ -8,7 +8,7 @@ const btnSiguiente = document.getElementById("siguiente");
 const paginaActual = document.getElementById("paginaActual");
 
 // Páginas permitidas
-const paginasPermitidas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11];
+const paginasPermitidas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15,16];
 let indicePagina = 0;
 
 // Detectar si hay un ID en la URL
